@@ -3,362 +3,149 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nationalyti Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel Ptoroductyl - Nux Market</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-  font-family: 'Inter', sans-serif;
-  background: url('https://files.catbox.moe/t23d92.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  padding-bottom: 50px;
-}
-
-    /* Gaya lainnya sama seperti sebelumnya */
-    .gif-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    header {
-      text-align: center;
-      padding: 20px 20px 10px;
-    }
-    h1 {
-  font-size: 2.2em;
-  font-weight: 800;
-  color: white;
-}
-    .features {
-      display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .feature {
-      background: #1a1a1a;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.9em;
-      color: #ccc;
-    }
-    section {
-  background: transparent;
-      padding: 30px 20px;
-      border-radius: 20px;
-      max-width: 850px;
-      margin: 20px auto;
-      box-shadow: 0 0 10px rgba(255, 0, 100, 0.3);
-    }
-    .toggle { text-align: center; margin-bottom: 20px; }
-    .toggle button {
-      background: #222;
-      color: #aaa;
-      padding: 10px 20px;
-      border: 2px solid #333;
-      border-radius: 8px;
-      margin: 0 10px;
-      cursor: pointer;
-      position: relative;
-    }
-    .toggle button.active {
-      background: linear-gradient(45deg, #ff004c, #a200ff);
+      background-color: #000;
       color: #fff;
-    }
-    .toggle button.active::after {
-      content: '✔';
-      position: absolute;
-      top: -8px; right: -8px;
-      background: #ff0077;
-      color: #000;
-      border-radius: 50%;
-      font-size: 12px;
-      padding: 2px 5px;
-    }
-    .desc {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #bbb;
-  background-color: rgba(0, 0, 0, 0.7); /* hitam transparan */
-  padding: 10px 15px;
-  border-radius: 12px;
-  display: inline-block;
-}
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 15px;
-    }
-    .card {
-  background: transparent;
-      padding: 15px;
-      border-radius: 12px;
+      font-family: Arial, sans-serif;
       text-align: center;
-      border: 2px solid transparent;
-      cursor: pointer;
-      position: relative;
-      transition: 0.3s;
+      padding: 30px;
     }
-    .card:hover {
-      border-color: #ff00c8;
+    .logo {
+      margin: 30px 0;
     }
-    .card.selected {
-      border: 2px solid #ff00b3;
-    }
-    .card.selected::after {
-      content: '✔';
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #ff007a;
-      color: #000;
-      border-radius: 50%;
-      font-size: 12px;
-      padding: 2px 6px;
-    }
-    .preview {
-      max-width: 400px;
-      margin: 30px auto 20px;
-      background: #1a1a1a;
-      border-left: 4px solid #ff007a;
-      padding: 15px;
-      border-radius: 10px;
-      white-space: pre-wrap;
-      font-family: monospace;
-      color: #ccc;
-    }
-    .payment {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .dana-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .dana-box input {
-      background: #fff;
-      color: #000;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      width: 160px;
-      text-align: center;
-    }
-    .dana-box button {
-      background: linear-gradient(45deg, #ff004c, #a200ff);
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .copied {
-      color: #00ff99;
-      margin-top: 6px;
-      font-size: 0.9em;
-    }
-    .qr img {
-      width: 160px;
-      border-radius: 10px;
-      margin-top: 20px;
-      cursor: pointer;
-    }
-    .zoomed {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      backdrop-filter: blur(8px);
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .zoomed img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-    }
-    .info {
-  text-align: center;
-  margin: 20px 0;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.8); /* hitam semi transparan */
-  padding: 10px 15px;
-  border-radius: 12px;
-  display: inline-block;
-}
-    .buy {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .buy a {
-      background: linear-gradient(45deg, #ff004c, #a200ff);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 10px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .sosmed {
-      text-align: center;
-    }
-    .sosmed a {
+    .button {
       display: inline-block;
-      background: #1a1a1a;
+      background-color: #00aaff;
       color: #fff;
-      margin: 5px;
-      padding: 10px 15px;
-      border-radius: 8px;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 30px;
+      margin: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
       text-decoration: none;
-      font-size: 0.9em;
+      animation: floatBtn 2s ease-in-out infinite;
     }
-    footer {
+    .whatsapp {
+      background-color: #25D366;
+      color: #fff;
+      display: block;
+      margin: 15px auto;
+      width: 200px;
       text-align: center;
-      margin-top: 40px;
-      color: #777;
-      font-size: 0.85em;
+    }
+    .produk-panel {
+      display: none;
+      background-color: #111;
+      border: 2px solid #00aaff;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 20px;
+      text-align: left;
+    }
+    .produk-panel h3 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .produk-panel ul {
+      list-style: none;
+      padding: 0;
+    }
+    .produk-panel li {
+      padding: 6px 0;
+      font-size: 16px;
+    }
+    .syarat {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .syarat li {
+      margin-bottom: 6px;
+    }
+    @keyframes floatBtn {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
     }
   </style>
 </head>
 <body>
-  
-  <header>
-  <img src="https://files.catbox.moe/geip9n.jpeg" alt="𝕯𝖎𝖒𝖟𝖟 𝐃𝖎𝖌𝖎𝖙𝖆𝖑 𝐇𝖔𝖘𝖙𝖎𝖓𝖌" style="width: 200px; margin-bottom: 10px;">
-  <h1>𝕯𝖎𝖒𝖟𝖟 𝐃𝖎𝖌𝖎𝖙𝖆𝖑 𝐇𝖔𝖘𝖙𝖎𝖓𝖌</h1>
-    <div class="features">
-      <div class="feature">⚡ Anti Lemot</div>
-      <div class="feature" id="spek">🧠 Spek R32 C8</div>
-      <div class="feature">🕒 Panel ON 24 Jam</div>
-  </header>
 
-  <section>
-    <div class="toggle">
-  <button onclick="selectPanel('private')" id="btnPrivate">Panel Private</button>
-  <button onclick="selectPanel('public')" id="btnPublic">Panel Public</button>
-</div>
+  <h1>PANEL PTORODUCTYL</h1>
 
-    <div class="desc" id="panelDesc">Panel Private Spek R32 C8, Anti Lemot Dan Stabil, Cocok Untuk SC Size Gede.</div>
-    <div class="cards" id="paketList"></div>
-    <div class="preview" id="previewBox">Silakan pilih paket panel.</div>
-
-    <div class="payment">
-      <h4>Nomor DANA:</h4>
-      <div class="dana-box">
-        <input type="text" id="danaNumber" value="085959140651" readonly />
-        <button onclick="copyDana()">Salin</button>
-      </div>
-      <span id="copyNotif" class="copied" style="display:none;">✅ Tersalin ke clipboard</span>
-
-      <div class="qr">
-        <h4 style="margin-top: 20px;">QRIS:</h4>
-        <img src="https://files.catbox.moe/fz1v2p.jpeg" alt="QRIS" onclick="zoomQR(this.src)">
-      </div>
-    </div>
-
-    <div class="info">Kirim bukti transfer melalui WhatsApp.<br>Klik tombol di bawah.</div>
-
-    <div class="buy">
-      <a id="whatsappLink" href="#" target="_blank">Beli via WhatsApp</a>
-    </div>
-
-    <div class="sosmed">
-      <a href="https://whatsapp.com/channel/0029Vb9784d0LKZEGcxp2h1J"
-        target="_blank">📱 All Testimoni Dimzz</a>
-    </div>
-  </section>
-
-  <div class="zoomed" id="zoomBox" style="display:none;" onclick="this.style.display='none'">
-    <img id="zoomedImg" src="">
+  <div class="logo">
+    <img src="https://img1.pixhost.to/images/7090/620287077_skyzopedia.jpg" alt="NUX Market Logo" width="250">
+    <p>NUXXKW<br>NUX MARKET STORE</p>
   </div>
 
-  <footer>
-    Author: DimzzMRT — Not Copyright
-  </footer>
+  <!-- Tombol Produk -->
+  <button class="button" onclick="toggleProduk()">PRODUK PANEL RUN BOT 📦🛒</button>
 
+  <!-- Panel Produk -->
+  <div class="produk-panel" id="produkPanel">
+    <h3>List Panel Run Bot By NuxMarket</h3>
+    <ul>
+      <li>💾 Ram 1GB : Rp500</li>
+      <li>💾 Ram 2GB : Rp1.000</li>
+      <li>💾 Ram 3GB : Rp1.500</li>
+      <li>💾 Ram 4GB : Rp2.000</li>
+      <li>💾 Ram 5GB : Rp2.500</li>
+      <li>💾 Ram 6GB : Rp3.000</li>
+      <li>💾 Ram 7GB : Rp3.500</li>
+      <li>💾 Ram 8GB : Rp4.000</li>
+      <li>💾 Ram 9GB : Rp4.500</li>
+      <li>🚀 Ram Unlimited : <strong>Rp5.000 (Promo)</strong></li>
+    </ul>
+    <div class="syarat">
+      <strong>Syarat & Ketentuan:</strong>
+      <ul>
+        <li>✅ <em>Server private & kualitas terbaik!</em></li>
+        <li>✅ <em>Script bot dijamin aman (anti drama/maling)</em></li>
+        <li>✅ <em>Garansi 10 hari (1x replace)</em></li>
+        <li>✅ <em>Server anti delay/lemot!</em></li>
+        <li>✅ <em>Claim garansi wajib bawa bukti transaksi</em></li>
+      </ul>
+    </div>
+    <div style="margin-top: 20px; text-align: center; font-size: 16px; font-weight: bold; color: #00ffcc;">
+      <p>JIKA INGIN ORDER LANGSUNG CHAT NUXMARKET.</p>
+      <p>TERIMAKASIH SUDAH MENGUNJUNGI WEB SAYA</p>
+      <p>JANGAN LUPA ORDER 🤗</p>
+    </div>
+  </div>
+
+  <!-- Tombol WhatsApp -->
+  <a class="button whatsapp" href="https://wa.me/6285657031392?text=aku%20mau%20order%20bang" target="_blank">WhatsApp 1</a>
+  <a class="button whatsapp" href="https://wa.me/6285166541436?text=aku%20mau%20order%20bang" target="_blank">WhatsApp 2</a>
+
+  <!-- Tombol Testimoni -->
+  <a class="button" href="https://whatsapp.com/channel/0029VbBP9Ju9WtC8eoFXUJ43" target="_blank">
+    TESTIMONI NUXMARKET 💬<br>
+    <span style="font-size: 14px; display:block; margin-top:5px;">Klik & follow saluran kami ya!</span>
+  </a>
+
+  <!-- Judul Daftar Payment NUXMARKET -->
+  <h2 style="margin-top: 40px; font-size: 20px; color: #00ffcc;">DAFTAR PAYMENT NUXMARKET</h2>
+
+  <!-- Gambar Payment (QRIS & DANA) -->
+  <div>
+    <img src="https://img1.pixhost.to/images/7094/620357314_skyzopedia.jpg" alt="QRIS" style="width: 180px; margin: 10px;">
+    <img src="https://img1.pixhost.to/images/7094/620357253_skyzopedia.jpg" alt="DANA" style="width: 180px; margin: 10px;">
+  </div>
+
+  <!-- Script -->
   <script>
-    const panelData = {
-      private: {
-        spek: '🧠 Spek R32 C8',
-        desc: 'Panel Private Spek R32 C8, Anti Lemot Dan Stabil, Cocok Untuk SC Size Gede.',
-        hargaList: [1500, 2500, 3500, 4500, 5500, 6500, 7500, 8500, 9500, 10000]
-      },
-      public: {
-        spek: '🧠 Spek R16 C4',
-        desc: 'Panel Public Spek R16 C8, Cocok Untuk Kebutuhan Standar Dan Hemat.',
-        hargaList: [500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 10000]
-      }, 
-      scriptbot: {
-  spek: '🤖 Script Siap Pakai',
-  desc: 'Script Bot cocok untuk auto response, parser, downloader, dll.',
-  hargaList: [1000, 2000, 3000, 4000, 5000, 6000]
-   }
-    };
-
-    let currentPanel = 'private';
-    let selectedCard = null;
-
-    function selectPanel(type) {
-      currentPanel = type;
-      document.getElementById('btnPrivate').classList.toggle('active', type === 'private');
-      document.getElementById('btnPublic').classList.toggle('active', type === 'public');
-      document.getElementById('panelDesc').innerText = panelData[type].desc;
-      document.getElementById('spek').innerText = panelData[type].spek;
-      renderPaket();
-      document.getElementById('previewBox').innerText = 'Silakan pilih paket panel.';
-      document.getElementById('whatsappLink').href = "#";
+    function toggleProduk() {
+      const panel = document.getElementById('produkPanel');
+      panel.style.display = panel.style.display === 'none' || panel.style.display === '' ? 'block' : 'none';
     }
-
-    function renderPaket() {
-      const list = document.getElementById('paketList');
-      list.innerHTML = '';
-      const hargaList = panelData[currentPanel].hargaList;
-      for (let i = 1; i <= hargaList.length; i++) {
-        const harga = hargaList[i - 1];
-        let label = i === 10 ? 'Unlimited' : `${i} GB`;
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `<h3>Panel ${label}</h3><p>Rp ${harga.toLocaleString()}</p>`;
-        div.onclick = () => generateWhatsApp(div, label, harga);
-        list.appendChild(div);
-      }
-    }
-
-    function generateWhatsApp(el, paket, harga) {
-      if (selectedCard) selectedCard.classList.remove('selected');
-      el.classList.add('selected');
-      selectedCard = el;
-      const panelUpper = currentPanel.toUpperCase();
-      const pesan = `┌────[ PESANAN PANEL ]────\n│ Panel   : ${panelUpper}\n│ Paket   : ${paket}\n│ Harga   : Rp ${harga.toLocaleString()}\n│ Status  : Belum Dibayar\n└──────────────────────`;
-      document.getElementById('previewBox').innerText = pesan;
-      document.getElementById('whatsappLink').href = `https://wa.me/6285959140651?text=${encodeURIComponent(pesan)}`;
-    }
-
-    function copyDana() {
-      const dana = document.getElementById("danaNumber").value;
-      navigator.clipboard.writeText(dana);
-      const notif = document.getElementById("copyNotif");
-      notif.style.display = "block";
-      setTimeout(() => notif.style.display = "none", 2000);
-    }
-
-    function zoomQR(src) {
-      document.getElementById('zoomedImg').src = src;
-      document.getElementById('zoomBox').style.display = "flex";
-    }
-
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loadingScreen").style.display = "none";
-      }, 2000);
-    });
-
-    renderPaket();
   </script>
+
 </body>
 </html>
